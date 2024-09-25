@@ -42575,8 +42575,8 @@ export class PostgreSqlParser extends SQLParserBase {
             case 9:
                 {
                 this.state = 6946;
-                this.function_name();
-                this.state = 6956;
+                this.match(PostgreSqlParser.KW_INTERVAL);
+                this.state = 6954;
                 this.errorHandler.sync(this);
                 switch (this.tokenStream.LA(1)) {
                 case PostgreSqlParser.StringConstant:
@@ -42586,27 +42586,23 @@ export class PostgreSqlParser extends SQLParserBase {
                     {
                     this.state = 6947;
                     this.sconst();
+                    this.state = 6949;
+                    this.errorHandler.sync(this);
+                    switch (this.interpreter.adaptivePredict(this.tokenStream, 951, this.context) ) {
+                    case 1:
+                        {
+                        this.state = 6948;
+                        this.opt_interval();
+                        }
+                        break;
+                    }
                     }
                     break;
                 case PostgreSqlParser.OPEN_PAREN:
                     {
-                    this.state = 6948;
-                    this.match(PostgreSqlParser.OPEN_PAREN);
-                    this.state = 6949;
-                    this.func_arg_list();
                     this.state = 6951;
-                    this.errorHandler.sync(this);
-                    _la = this.tokenStream.LA(1);
-                    if (_la === 83) {
-                        {
-                        this.state = 6950;
-                        this.sort_clause();
-                        }
-                    }
-
-                    this.state = 6953;
-                    this.match(PostgreSqlParser.CLOSE_PAREN);
-                    this.state = 6954;
+                    this.opt_float();
+                    this.state = 6952;
                     this.sconst();
                     }
                     break;
@@ -42617,200 +42613,101 @@ export class PostgreSqlParser extends SQLParserBase {
                 break;
             case 10:
                 {
-                this.state = 6959;
-                this.errorHandler.sync(this);
-                _la = this.tokenStream.LA(1);
-                if (_la === 190 || ((((_la - 388)) & ~0x1F) === 0 && ((1 << (_la - 388)) & 3525731551) !== 0) || _la === 423) {
-                    {
-                    this.state = 6958;
-                    this.consttypename();
-                    }
-                }
-
-                this.state = 6961;
-                this.sconst();
+                this.state = 6956;
+                this.match(PostgreSqlParser.KW_TRUE);
                 }
                 break;
             case 11:
                 {
-                this.state = 6962;
-                this.match(PostgreSqlParser.KW_INTERVAL);
-                this.state = 6970;
-                this.errorHandler.sync(this);
-                switch (this.tokenStream.LA(1)) {
-                case PostgreSqlParser.StringConstant:
-                case PostgreSqlParser.UnicodeEscapeStringConstant:
-                case PostgreSqlParser.BeginDollarStringConstant:
-                case PostgreSqlParser.EscapeStringConstant:
-                    {
-                    this.state = 6963;
-                    this.sconst();
-                    this.state = 6965;
-                    this.errorHandler.sync(this);
-                    switch (this.interpreter.adaptivePredict(this.tokenStream, 954, this.context) ) {
-                    case 1:
-                        {
-                        this.state = 6964;
-                        this.opt_interval();
-                        }
-                        break;
-                    }
-                    }
-                    break;
-                case PostgreSqlParser.OPEN_PAREN:
-                    {
-                    this.state = 6967;
-                    this.opt_float();
-                    this.state = 6968;
-                    this.sconst();
-                    }
-                    break;
-                default:
-                    throw new antlr.NoViableAltException(this);
-                }
+                this.state = 6957;
+                this.match(PostgreSqlParser.KW_FALSE);
                 }
                 break;
             case 12:
                 {
-                this.state = 6972;
-                this.match(PostgreSqlParser.KW_TRUE);
+                this.state = 6958;
+                this.match(PostgreSqlParser.KW_NULL);
                 }
                 break;
             case 13:
                 {
-                this.state = 6973;
-                this.match(PostgreSqlParser.KW_FALSE);
+                this.state = 6959;
+                this.match(PostgreSqlParser.PLSQLVARIABLENAME);
                 }
                 break;
             case 14:
                 {
-                this.state = 6974;
-                this.match(PostgreSqlParser.KW_NULL);
+                this.state = 6960;
+                this.match(PostgreSqlParser.OPEN_PAREN);
+                this.state = 6961;
+                localContext._a_expr_in_parens = this.expression();
+                this.state = 6962;
+                this.match(PostgreSqlParser.CLOSE_PAREN);
+                this.state = 6963;
+                this.opt_indirection();
                 }
                 break;
             case 15:
                 {
-                this.state = 6975;
-                this.match(PostgreSqlParser.PLSQLVARIABLENAME);
-                }
-                break;
-            case 16:
-                {
-                this.state = 6976;
-                this.match(PostgreSqlParser.OPEN_PAREN);
-                this.state = 6977;
-                localContext._a_expr_in_parens = this.expression();
-                this.state = 6978;
-                this.match(PostgreSqlParser.CLOSE_PAREN);
-                this.state = 6979;
-                this.opt_indirection();
-                }
-                break;
-            case 17:
-                {
-                this.state = 6981;
+                this.state = 6965;
                 this.match(PostgreSqlParser.KW_CASE);
-                this.state = 6983;
+                this.state = 6967;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
                 if ((((_la) & ~0x1F) === 0 && ((1 << _la) & 805318660) !== 0) || ((((_la - 35)) & ~0x1F) === 0 && ((1 << (_la - 35)) & 34074721) !== 0) || ((((_la - 75)) & ~0x1F) === 0 && ((1 << (_la - 75)) & 2174763023) !== 0) || ((((_la - 107)) & ~0x1F) === 0 && ((1 << (_la - 107)) & 4294967295) !== 0) || ((((_la - 139)) & ~0x1F) === 0 && ((1 << (_la - 139)) & 4294967295) !== 0) || ((((_la - 171)) & ~0x1F) === 0 && ((1 << (_la - 171)) & 4294967295) !== 0) || ((((_la - 203)) & ~0x1F) === 0 && ((1 << (_la - 203)) & 67108863) !== 0) || ((((_la - 238)) & ~0x1F) === 0 && ((1 << (_la - 238)) & 4294967295) !== 0) || ((((_la - 270)) & ~0x1F) === 0 && ((1 << (_la - 270)) & 4294967295) !== 0) || ((((_la - 302)) & ~0x1F) === 0 && ((1 << (_la - 302)) & 4294967295) !== 0) || ((((_la - 334)) & ~0x1F) === 0 && ((1 << (_la - 334)) & 4294967295) !== 0) || ((((_la - 366)) & ~0x1F) === 0 && ((1 << (_la - 366)) & 4294967295) !== 0) || ((((_la - 398)) & ~0x1F) === 0 && ((1 << (_la - 398)) & 4294967295) !== 0) || ((((_la - 430)) & ~0x1F) === 0 && ((1 << (_la - 430)) & 4278190079) !== 0) || ((((_la - 462)) & ~0x1F) === 0 && ((1 << (_la - 462)) & 4294967295) !== 0) || ((((_la - 494)) & ~0x1F) === 0 && ((1 << (_la - 494)) & 1174402559) !== 0) || ((((_la - 547)) & ~0x1F) === 0 && ((1 << (_la - 547)) & 487696527) !== 0) || _la === 584) {
                     {
-                    this.state = 6982;
+                    this.state = 6966;
                     this.expression();
                     }
                 }
 
-                this.state = 6986;
+                this.state = 6970;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
                 do {
                     {
                     {
-                    this.state = 6985;
+                    this.state = 6969;
                     this.when_clause();
                     }
                     }
-                    this.state = 6988;
+                    this.state = 6972;
                     this.errorHandler.sync(this);
                     _la = this.tokenStream.LA(1);
                 } while (_la === 102);
-                this.state = 6992;
+                this.state = 6976;
                 this.errorHandler.sync(this);
                 _la = this.tokenStream.LA(1);
                 if (_la === 58) {
                     {
-                    this.state = 6990;
+                    this.state = 6974;
                     this.match(PostgreSqlParser.KW_ELSE);
-                    this.state = 6991;
+                    this.state = 6975;
                     this.expression();
                     }
                 }
 
-                this.state = 6994;
+                this.state = 6978;
                 this.match(PostgreSqlParser.KW_END);
                 }
                 break;
-            case 18:
+            case 16:
                 {
-                this.state = 6996;
-                this.func_expr();
-                }
-                break;
-            case 19:
-                {
-                this.state = 6997;
-                this.select_with_parens();
-                this.state = 6999;
-                this.errorHandler.sync(this);
-                switch (this.interpreter.adaptivePredict(this.tokenStream, 959, this.context) ) {
-                case 1:
-                    {
-                    this.state = 6998;
-                    this.indirection();
-                    }
-                    break;
-                }
-                }
-                break;
-            case 20:
-                {
-                this.state = 7001;
-                this.explicit_row();
-                }
-                break;
-            case 21:
-                {
-                this.state = 7002;
+                this.state = 6980;
                 this.match(PostgreSqlParser.OPEN_PAREN);
-                this.state = 7003;
+                this.state = 6981;
                 this.expression();
-                this.state = 7004;
+                this.state = 6982;
                 this.match(PostgreSqlParser.COMMA);
-                this.state = 7005;
+                this.state = 6983;
                 this.expr_list();
-                this.state = 7006;
+                this.state = 6984;
                 this.match(PostgreSqlParser.CLOSE_PAREN);
                 }
                 break;
-            case 22:
+            case 17:
                 {
-                this.state = 7008;
-                this.row();
-                this.state = 7009;
-                this.match(PostgreSqlParser.KW_OVERLAPS);
-                this.state = 7010;
-                this.row();
-                }
-                break;
-            case 23:
-                {
-                this.state = 7012;
-                this.qualified_name();
-                }
-                break;
-            case 24:
-                {
-                this.state = 7013;
+                this.state = 6986;
                 _la = this.tokenStream.LA(1);
                 if(!(_la === 12 || _la === 13)) {
                 this.errorHandler.recoverInline(this);
@@ -42819,8 +42716,111 @@ export class PostgreSqlParser extends SQLParserBase {
                     this.errorHandler.reportMatch(this);
                     this.consume();
                 }
-                this.state = 7014;
-                this.primaryExpression(5);
+                this.state = 6987;
+                this.primaryExpression(13);
+                }
+                break;
+            case 18:
+                {
+                this.state = 6988;
+                this.qualified_name();
+                }
+                break;
+            case 19:
+                {
+                this.state = 6989;
+                this.function_name();
+                this.state = 6999;
+                this.errorHandler.sync(this);
+                switch (this.tokenStream.LA(1)) {
+                case PostgreSqlParser.StringConstant:
+                case PostgreSqlParser.UnicodeEscapeStringConstant:
+                case PostgreSqlParser.BeginDollarStringConstant:
+                case PostgreSqlParser.EscapeStringConstant:
+                    {
+                    this.state = 6990;
+                    this.sconst();
+                    }
+                    break;
+                case PostgreSqlParser.OPEN_PAREN:
+                    {
+                    this.state = 6991;
+                    this.match(PostgreSqlParser.OPEN_PAREN);
+                    this.state = 6992;
+                    this.func_arg_list();
+                    this.state = 6994;
+                    this.errorHandler.sync(this);
+                    _la = this.tokenStream.LA(1);
+                    if (_la === 83) {
+                        {
+                        this.state = 6993;
+                        this.sort_clause();
+                        }
+                    }
+
+                    this.state = 6996;
+                    this.match(PostgreSqlParser.CLOSE_PAREN);
+                    this.state = 6997;
+                    this.sconst();
+                    }
+                    break;
+                default:
+                    throw new antlr.NoViableAltException(this);
+                }
+                }
+                break;
+            case 20:
+                {
+                this.state = 7002;
+                this.errorHandler.sync(this);
+                _la = this.tokenStream.LA(1);
+                if (_la === 190 || ((((_la - 388)) & ~0x1F) === 0 && ((1 << (_la - 388)) & 3525731551) !== 0) || _la === 423) {
+                    {
+                    this.state = 7001;
+                    this.consttypename();
+                    }
+                }
+
+                this.state = 7004;
+                this.sconst();
+                }
+                break;
+            case 21:
+                {
+                this.state = 7005;
+                this.func_expr();
+                }
+                break;
+            case 22:
+                {
+                this.state = 7006;
+                this.select_with_parens();
+                this.state = 7008;
+                this.errorHandler.sync(this);
+                switch (this.interpreter.adaptivePredict(this.tokenStream, 959, this.context) ) {
+                case 1:
+                    {
+                    this.state = 7007;
+                    this.indirection();
+                    }
+                    break;
+                }
+                }
+                break;
+            case 23:
+                {
+                this.state = 7010;
+                this.explicit_row();
+                }
+                break;
+            case 24:
+                {
+                this.state = 7011;
+                this.row();
+                this.state = 7012;
+                this.match(PostgreSqlParser.KW_OVERLAPS);
+                this.state = 7013;
+                this.row();
                 }
                 break;
             case 25:
@@ -42865,8 +42865,8 @@ export class PostgreSqlParser extends SQLParserBase {
                         localContext = new PrimaryExpressionContext(parentContext, parentState);
                         this.pushNewRecursionContext(localContext, _startState, PostgreSqlParser.RULE_primaryExpression);
                         this.state = 7024;
-                        if (!(this.precpred(this.context, 6))) {
-                            throw this.createFailedPredicateException("this.precpred(this.context, 6)");
+                        if (!(this.precpred(this.context, 5))) {
+                            throw this.createFailedPredicateException("this.precpred(this.context, 5)");
                         }
                         this.state = 7025;
                         this.match(PostgreSqlParser.TYPECAST);
@@ -54714,7 +54714,7 @@ export class PostgreSqlParser extends SQLParserBase {
         case 6:
             return this.precpred(this.context, 3);
         case 7:
-            return this.precpred(this.context, 6);
+            return this.precpred(this.context, 5);
         case 8:
             return this.precpred(this.context, 4);
         case 9:
@@ -55422,14 +55422,14 @@ export class PostgreSqlParser extends SQLParserBase {
         8,340,1,340,1,340,1,340,1,340,1,340,1,340,1,340,1,340,1,340,1,340,
         1,340,1,340,1,340,1,340,5,340,6926,8,340,10,340,12,340,6929,9,340,
         1,341,1,341,1,341,1,341,1,341,1,341,3,341,6937,8,341,1,341,1,341,
+        1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,3,341,6950,
+        8,341,1,341,1,341,1,341,3,341,6955,8,341,1,341,1,341,1,341,1,341,
+        1,341,1,341,1,341,1,341,1,341,1,341,1,341,3,341,6968,8,341,1,341,
+        4,341,6971,8,341,11,341,12,341,6972,1,341,1,341,3,341,6977,8,341,
         1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,
-        3,341,6952,8,341,1,341,1,341,1,341,3,341,6957,8,341,1,341,3,341,
-        6960,8,341,1,341,1,341,1,341,1,341,3,341,6966,8,341,1,341,1,341,
-        1,341,3,341,6971,8,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,
-        1,341,1,341,1,341,1,341,3,341,6984,8,341,1,341,4,341,6987,8,341,
-        11,341,12,341,6988,1,341,1,341,3,341,6993,8,341,1,341,1,341,1,341,
-        1,341,1,341,3,341,7000,8,341,1,341,1,341,1,341,1,341,1,341,1,341,
-        1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,
+        1,341,1,341,1,341,1,341,1,341,3,341,6995,8,341,1,341,1,341,1,341,
+        3,341,7000,8,341,1,341,3,341,7003,8,341,1,341,1,341,1,341,1,341,
+        3,341,7009,8,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,
         3,341,7019,8,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,1,341,
         1,341,1,341,3,341,7031,8,341,1,341,1,341,1,341,3,341,7036,8,341,
         1,341,1,341,1,341,1,341,1,341,1,341,3,341,7044,8,341,5,341,7046,
@@ -57967,42 +57967,42 @@ export class PostgreSqlParser extends SQLParserBase {
         6934,1,0,0,0,6936,6935,1,0,0,0,6937,7019,1,0,0,0,6938,6939,5,28,
         0,0,6939,7019,3,754,377,0,6940,6941,5,470,0,0,6941,7019,3,534,267,
         0,6942,7019,5,571,0,0,6943,7019,5,573,0,0,6944,7019,5,563,0,0,6945,
-        7019,5,567,0,0,6946,6956,3,806,403,0,6947,6957,3,808,404,0,6948,
-        6949,5,2,0,0,6949,6951,3,736,368,0,6950,6952,3,586,293,0,6951,6950,
-        1,0,0,0,6951,6952,1,0,0,0,6952,6953,1,0,0,0,6953,6954,5,3,0,0,6954,
-        6955,3,808,404,0,6955,6957,1,0,0,0,6956,6947,1,0,0,0,6956,6948,1,
-        0,0,0,6957,7019,1,0,0,0,6958,6960,3,656,328,0,6959,6958,1,0,0,0,
-        6959,6960,1,0,0,0,6960,6961,1,0,0,0,6961,7019,3,808,404,0,6962,6970,
-        5,403,0,0,6963,6965,3,808,404,0,6964,6966,3,668,334,0,6965,6964,
-        1,0,0,0,6965,6966,1,0,0,0,6966,6971,1,0,0,0,6967,6968,3,660,330,
-        0,6968,6969,3,808,404,0,6969,6971,1,0,0,0,6970,6963,1,0,0,0,6970,
-        6967,1,0,0,0,6971,7019,1,0,0,0,6972,7019,5,96,0,0,6973,7019,5,60,
-        0,0,6974,7019,5,78,0,0,6975,7019,5,574,0,0,6976,6977,5,2,0,0,6977,
-        6978,3,674,337,0,6978,6979,5,3,0,0,6979,6980,3,754,377,0,6980,7019,
-        1,0,0,0,6981,6983,5,40,0,0,6982,6984,3,674,337,0,6983,6982,1,0,0,
-        0,6983,6984,1,0,0,0,6984,6986,1,0,0,0,6985,6987,3,748,374,0,6986,
-        6985,1,0,0,0,6987,6988,1,0,0,0,6988,6986,1,0,0,0,6988,6989,1,0,0,
-        0,6989,6992,1,0,0,0,6990,6991,5,58,0,0,6991,6993,3,674,337,0,6992,
-        6990,1,0,0,0,6992,6993,1,0,0,0,6993,6994,1,0,0,0,6994,6995,5,454,
-        0,0,6995,7019,1,0,0,0,6996,7019,3,686,343,0,6997,6999,3,562,281,
-        0,6998,7000,3,752,376,0,6999,6998,1,0,0,0,6999,7000,1,0,0,0,7000,
-        7019,1,0,0,0,7001,7019,3,716,358,0,7002,7003,5,2,0,0,7003,7004,3,
-        674,337,0,7004,7005,5,6,0,0,7005,7006,3,730,365,0,7006,7007,5,3,
-        0,0,7007,7019,1,0,0,0,7008,7009,3,714,357,0,7009,7010,5,125,0,0,
-        7010,7011,3,714,357,0,7011,7019,1,0,0,0,7012,7019,3,780,390,0,7013,
-        7014,7,29,0,0,7014,7019,3,682,341,5,7015,7016,3,724,362,0,7016,7017,
-        3,682,341,2,7017,7019,1,0,0,0,7018,6930,1,0,0,0,7018,6933,1,0,0,
-        0,7018,6938,1,0,0,0,7018,6940,1,0,0,0,7018,6942,1,0,0,0,7018,6943,
-        1,0,0,0,7018,6944,1,0,0,0,7018,6945,1,0,0,0,7018,6946,1,0,0,0,7018,
-        6959,1,0,0,0,7018,6962,1,0,0,0,7018,6972,1,0,0,0,7018,6973,1,0,0,
-        0,7018,6974,1,0,0,0,7018,6975,1,0,0,0,7018,6976,1,0,0,0,7018,6981,
-        1,0,0,0,7018,6996,1,0,0,0,7018,6997,1,0,0,0,7018,7001,1,0,0,0,7018,
-        7002,1,0,0,0,7018,7008,1,0,0,0,7018,7012,1,0,0,0,7018,7013,1,0,0,
-        0,7018,7015,1,0,0,0,7019,7047,1,0,0,0,7020,7021,10,3,0,0,7021,7022,
-        3,722,361,0,7022,7023,3,682,341,4,7023,7046,1,0,0,0,7024,7025,10,
-        6,0,0,7025,7026,5,26,0,0,7026,7046,3,652,326,0,7027,7028,10,4,0,
-        0,7028,7030,3,724,362,0,7029,7031,3,682,341,0,7030,7029,1,0,0,0,
-        7030,7031,1,0,0,0,7031,7046,1,0,0,0,7032,7033,10,1,0,0,7033,7035,
+        7019,5,567,0,0,6946,6954,5,403,0,0,6947,6949,3,808,404,0,6948,6950,
+        3,668,334,0,6949,6948,1,0,0,0,6949,6950,1,0,0,0,6950,6955,1,0,0,
+        0,6951,6952,3,660,330,0,6952,6953,3,808,404,0,6953,6955,1,0,0,0,
+        6954,6947,1,0,0,0,6954,6951,1,0,0,0,6955,7019,1,0,0,0,6956,7019,
+        5,96,0,0,6957,7019,5,60,0,0,6958,7019,5,78,0,0,6959,7019,5,574,0,
+        0,6960,6961,5,2,0,0,6961,6962,3,674,337,0,6962,6963,5,3,0,0,6963,
+        6964,3,754,377,0,6964,7019,1,0,0,0,6965,6967,5,40,0,0,6966,6968,
+        3,674,337,0,6967,6966,1,0,0,0,6967,6968,1,0,0,0,6968,6970,1,0,0,
+        0,6969,6971,3,748,374,0,6970,6969,1,0,0,0,6971,6972,1,0,0,0,6972,
+        6970,1,0,0,0,6972,6973,1,0,0,0,6973,6976,1,0,0,0,6974,6975,5,58,
+        0,0,6975,6977,3,674,337,0,6976,6974,1,0,0,0,6976,6977,1,0,0,0,6977,
+        6978,1,0,0,0,6978,6979,5,454,0,0,6979,7019,1,0,0,0,6980,6981,5,2,
+        0,0,6981,6982,3,674,337,0,6982,6983,5,6,0,0,6983,6984,3,730,365,
+        0,6984,6985,5,3,0,0,6985,7019,1,0,0,0,6986,6987,7,29,0,0,6987,7019,
+        3,682,341,13,6988,7019,3,780,390,0,6989,6999,3,806,403,0,6990,7000,
+        3,808,404,0,6991,6992,5,2,0,0,6992,6994,3,736,368,0,6993,6995,3,
+        586,293,0,6994,6993,1,0,0,0,6994,6995,1,0,0,0,6995,6996,1,0,0,0,
+        6996,6997,5,3,0,0,6997,6998,3,808,404,0,6998,7000,1,0,0,0,6999,6990,
+        1,0,0,0,6999,6991,1,0,0,0,7000,7019,1,0,0,0,7001,7003,3,656,328,
+        0,7002,7001,1,0,0,0,7002,7003,1,0,0,0,7003,7004,1,0,0,0,7004,7019,
+        3,808,404,0,7005,7019,3,686,343,0,7006,7008,3,562,281,0,7007,7009,
+        3,752,376,0,7008,7007,1,0,0,0,7008,7009,1,0,0,0,7009,7019,1,0,0,
+        0,7010,7019,3,716,358,0,7011,7012,3,714,357,0,7012,7013,5,125,0,
+        0,7013,7014,3,714,357,0,7014,7019,1,0,0,0,7015,7016,3,724,362,0,
+        7016,7017,3,682,341,2,7017,7019,1,0,0,0,7018,6930,1,0,0,0,7018,6933,
+        1,0,0,0,7018,6938,1,0,0,0,7018,6940,1,0,0,0,7018,6942,1,0,0,0,7018,
+        6943,1,0,0,0,7018,6944,1,0,0,0,7018,6945,1,0,0,0,7018,6946,1,0,0,
+        0,7018,6956,1,0,0,0,7018,6957,1,0,0,0,7018,6958,1,0,0,0,7018,6959,
+        1,0,0,0,7018,6960,1,0,0,0,7018,6965,1,0,0,0,7018,6980,1,0,0,0,7018,
+        6986,1,0,0,0,7018,6988,1,0,0,0,7018,6989,1,0,0,0,7018,7002,1,0,0,
+        0,7018,7005,1,0,0,0,7018,7006,1,0,0,0,7018,7010,1,0,0,0,7018,7011,
+        1,0,0,0,7018,7015,1,0,0,0,7019,7047,1,0,0,0,7020,7021,10,3,0,0,7021,
+        7022,3,722,361,0,7022,7023,3,682,341,4,7023,7046,1,0,0,0,7024,7025,
+        10,5,0,0,7025,7026,5,26,0,0,7026,7046,3,652,326,0,7027,7028,10,4,
+        0,0,7028,7030,3,724,362,0,7029,7031,3,682,341,0,7030,7029,1,0,0,
+        0,7030,7031,1,0,0,0,7031,7046,1,0,0,0,7032,7033,10,1,0,0,7033,7035,
         5,116,0,0,7034,7036,5,77,0,0,7035,7034,1,0,0,0,7035,7036,1,0,0,0,
         7036,7043,1,0,0,0,7037,7038,5,56,0,0,7038,7039,5,64,0,0,7039,7044,
         3,682,341,0,7040,7041,5,275,0,0,7041,7044,3,528,264,0,7042,7044,
@@ -58608,7 +58608,7 @@ export class PostgreSqlParser extends SQLParserBase {
         6718,6727,6733,6736,6744,6747,6751,6757,6759,6762,6766,6771,6778,
         6785,6787,6793,6795,6800,6802,6806,6815,6819,6827,6829,6843,6846,
         6854,6863,6869,6874,6882,6884,6889,6893,6898,6903,6909,6925,6927,
-        6936,6951,6956,6959,6965,6970,6983,6988,6992,6999,7018,7030,7035,
+        6936,6949,6954,6967,6972,6976,6994,6999,7002,7008,7018,7030,7035,
         7043,7045,7047,7056,7059,7064,7069,7073,7076,7085,7093,7098,7100,
         7103,7107,7118,7139,7147,7160,7170,7176,7182,7185,7188,7214,7216,
         7237,7247,7260,7265,7269,7271,7283,7290,7296,7302,7306,7317,7327,
@@ -79112,29 +79112,11 @@ export class PrimaryExpressionContext extends antlr.ParserRuleContext {
     public HexadecimalStringConstant(): antlr.TerminalNode | null {
         return this.getToken(PostgreSqlParser.HexadecimalStringConstant, 0);
     }
-    public function_name(): Function_nameContext | null {
-        return this.getRuleContext(0, Function_nameContext);
+    public KW_INTERVAL(): antlr.TerminalNode | null {
+        return this.getToken(PostgreSqlParser.KW_INTERVAL, 0);
     }
     public sconst(): SconstContext | null {
         return this.getRuleContext(0, SconstContext);
-    }
-    public OPEN_PAREN(): antlr.TerminalNode | null {
-        return this.getToken(PostgreSqlParser.OPEN_PAREN, 0);
-    }
-    public func_arg_list(): Func_arg_listContext | null {
-        return this.getRuleContext(0, Func_arg_listContext);
-    }
-    public CLOSE_PAREN(): antlr.TerminalNode | null {
-        return this.getToken(PostgreSqlParser.CLOSE_PAREN, 0);
-    }
-    public sort_clause(): Sort_clauseContext | null {
-        return this.getRuleContext(0, Sort_clauseContext);
-    }
-    public consttypename(): ConsttypenameContext | null {
-        return this.getRuleContext(0, ConsttypenameContext);
-    }
-    public KW_INTERVAL(): antlr.TerminalNode | null {
-        return this.getToken(PostgreSqlParser.KW_INTERVAL, 0);
     }
     public opt_float(): Opt_floatContext | null {
         return this.getRuleContext(0, Opt_floatContext);
@@ -79153,6 +79135,12 @@ export class PrimaryExpressionContext extends antlr.ParserRuleContext {
     }
     public PLSQLVARIABLENAME(): antlr.TerminalNode | null {
         return this.getToken(PostgreSqlParser.PLSQLVARIABLENAME, 0);
+    }
+    public OPEN_PAREN(): antlr.TerminalNode | null {
+        return this.getToken(PostgreSqlParser.OPEN_PAREN, 0);
+    }
+    public CLOSE_PAREN(): antlr.TerminalNode | null {
+        return this.getToken(PostgreSqlParser.CLOSE_PAREN, 0);
     }
     public expression(): ExpressionContext[];
     public expression(i: number): ExpressionContext | null;
@@ -79181,35 +79169,11 @@ export class PrimaryExpressionContext extends antlr.ParserRuleContext {
     public KW_ELSE(): antlr.TerminalNode | null {
         return this.getToken(PostgreSqlParser.KW_ELSE, 0);
     }
-    public func_expr(): Func_exprContext | null {
-        return this.getRuleContext(0, Func_exprContext);
-    }
-    public indirection(): IndirectionContext | null {
-        return this.getRuleContext(0, IndirectionContext);
-    }
-    public explicit_row(): Explicit_rowContext | null {
-        return this.getRuleContext(0, Explicit_rowContext);
-    }
     public COMMA(): antlr.TerminalNode | null {
         return this.getToken(PostgreSqlParser.COMMA, 0);
     }
     public expr_list(): Expr_listContext | null {
         return this.getRuleContext(0, Expr_listContext);
-    }
-    public row(): RowContext[];
-    public row(i: number): RowContext | null;
-    public row(i?: number): RowContext[] | RowContext | null {
-        if (i === undefined) {
-            return this.getRuleContexts(RowContext);
-        }
-
-        return this.getRuleContext(i, RowContext);
-    }
-    public KW_OVERLAPS(): antlr.TerminalNode | null {
-        return this.getToken(PostgreSqlParser.KW_OVERLAPS, 0);
-    }
-    public qualified_name(): Qualified_nameContext | null {
-        return this.getRuleContext(0, Qualified_nameContext);
     }
     public primaryExpression(): PrimaryExpressionContext[];
     public primaryExpression(i: number): PrimaryExpressionContext | null;
@@ -79225,6 +79189,42 @@ export class PrimaryExpressionContext extends antlr.ParserRuleContext {
     }
     public MINUS(): antlr.TerminalNode | null {
         return this.getToken(PostgreSqlParser.MINUS, 0);
+    }
+    public qualified_name(): Qualified_nameContext | null {
+        return this.getRuleContext(0, Qualified_nameContext);
+    }
+    public function_name(): Function_nameContext | null {
+        return this.getRuleContext(0, Function_nameContext);
+    }
+    public func_arg_list(): Func_arg_listContext | null {
+        return this.getRuleContext(0, Func_arg_listContext);
+    }
+    public sort_clause(): Sort_clauseContext | null {
+        return this.getRuleContext(0, Sort_clauseContext);
+    }
+    public consttypename(): ConsttypenameContext | null {
+        return this.getRuleContext(0, ConsttypenameContext);
+    }
+    public func_expr(): Func_exprContext | null {
+        return this.getRuleContext(0, Func_exprContext);
+    }
+    public indirection(): IndirectionContext | null {
+        return this.getRuleContext(0, IndirectionContext);
+    }
+    public explicit_row(): Explicit_rowContext | null {
+        return this.getRuleContext(0, Explicit_rowContext);
+    }
+    public row(): RowContext[];
+    public row(i: number): RowContext | null;
+    public row(i?: number): RowContext[] | RowContext | null {
+        if (i === undefined) {
+            return this.getRuleContexts(RowContext);
+        }
+
+        return this.getRuleContext(i, RowContext);
+    }
+    public KW_OVERLAPS(): antlr.TerminalNode | null {
+        return this.getToken(PostgreSqlParser.KW_OVERLAPS, 0);
     }
     public qual_op(): Qual_opContext | null {
         return this.getRuleContext(0, Qual_opContext);

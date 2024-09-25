@@ -2395,8 +2395,6 @@ primaryExpression
     | Numeric
     | BinaryStringConstant
     | HexadecimalStringConstant
-    | function_name (sconst | OPEN_PAREN func_arg_list sort_clause? CLOSE_PAREN sconst)
-    | consttypename? sconst
     | KW_INTERVAL ( sconst opt_interval? | opt_float sconst)
     | KW_TRUE
     | KW_FALSE
@@ -2404,14 +2402,16 @@ primaryExpression
     | PLSQLVARIABLENAME
     | OPEN_PAREN a_expr_in_parens= expression CLOSE_PAREN opt_indirection
     | KW_CASE expression? when_clause+ (KW_ELSE expression)? KW_END
+    | OPEN_PAREN expression COMMA expr_list CLOSE_PAREN
+    | (PLUS | MINUS) primaryExpression
+    | qualified_name
+    | function_name (sconst | OPEN_PAREN func_arg_list sort_clause? CLOSE_PAREN sconst)
+    | consttypename? sconst
     | func_expr
     | select_with_parens indirection?
     | explicit_row
-    | OPEN_PAREN expression COMMA expr_list CLOSE_PAREN
     | row KW_OVERLAPS row
-    | qualified_name
     | primaryExpression TYPECAST typename
-    | (PLUS | MINUS) primaryExpression
     | primaryExpression qual_op primaryExpression?
     | primaryExpression mathop primaryExpression
     | qual_op primaryExpression
